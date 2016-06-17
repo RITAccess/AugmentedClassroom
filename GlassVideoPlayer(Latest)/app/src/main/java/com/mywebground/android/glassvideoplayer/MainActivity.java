@@ -165,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
                   resizeButton.setVisibility(View.INVISIBLE);
                   button.setVisibility(View.INVISIBLE);
                   TOUCH_GESTURE_MODE = GESTURE_MODE_NONE;
-                  videoView.pause();
                   videoView.start();
               }
 
@@ -330,18 +329,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
-    // @Override
-    // protected void onResume() {
-    //     videoView.start();
-    //     super.onResume();
-    // }
-
-    // @Override
-    // protected void onPause() {
-    //     videoView.pause();
-    //     super.onPause();
-    // }
 
     private void hideSystemUI() {
         mDecorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
