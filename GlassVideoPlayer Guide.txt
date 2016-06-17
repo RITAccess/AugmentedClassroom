@@ -1,0 +1,5 @@
+GlassVideoPlayer Guide
+
+mainact 
+	line 50 video string set
+	i think the 2 buttonsare in line 137
