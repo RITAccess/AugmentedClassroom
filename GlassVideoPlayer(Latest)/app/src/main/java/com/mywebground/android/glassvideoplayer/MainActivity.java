@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 videoView.pause();
             }
-        }, 1000);
+        }, 1100);
 
 
         // note to move before resizing due to a bug
