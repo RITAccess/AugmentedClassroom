@@ -1,0 +1,91 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#2ecc71"
+            android:gravity="center"
+            android:text="Are you using the phone or glasses?"
+            android:textColor="#fff"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:textSize="24sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="Phone"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:onClick="clickPhone"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="Glasses"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:onClick="clickGlasses"
+            />
+        <LinearLayout android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+        <EditText
+           android:ems="8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="IP"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:id = "@+id/ipAddressText"
+            />
+
+        <EditText
+           android:ems="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Port"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:id = "@+id/portText"
+            />
+    </LinearLayout>
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/bluetoothList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"></ListView>
+    </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

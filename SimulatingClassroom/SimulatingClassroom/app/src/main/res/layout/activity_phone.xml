@@ -1,0 +1,50 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        tools:context="edu.rit.simulatingclassroom.PhoneActivity">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:onClick="clickedOne"
+            android:text="Play captions" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="clickedTwo"
+            android:layout_height="100dp"
+            android:text="Play ASL" />
+
+        <EditText
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id = "@+id/captionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Put caption here"
+            android:visibility="gone"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text = "play/pause videos"
+            android:onClick = "playPause"
+            />
+
+
+
+
+    </LinearLayout>
+</ScrollView>
+
