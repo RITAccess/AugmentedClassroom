@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         mScaleGestureDetector = new ScaleGestureDetector(this, new MyScaleGestureListener());
 
-        // log button
+        // log button, initialize variable
         button = (Button) findViewById(R.id.logInfo);
 
 
