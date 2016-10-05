@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<!-- The following code is the structure for the moving and resizing of the interpreter 
+video which will be shown in the Epson Moverio BT-200 glasses under research in the CAIR
+lab at RIT. This standalone code simply displays the functionality which will be applied
+in php code cleandocumentedglassesphp.php in order to allow personalization to the 
+glasses experience for deaf/HOH students. This code is buggy in the actual glasses, so 
+the php code should be what is run when the glasses are in use. This code is great for
+demonstrations and explanations of what people are seeing in the glasses when they are wearing
+them! -->
+
+<head>
+  	<meta charset="utf-8">
+      <title>Glasses Video Code Sept 26</title>
+
+	  <meta name="viewport" content="width=device-width,minimum-scale=1.0, maximum-scale=1.0"/>
+
+      <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	  <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+	  <!--reference: touchpunch.furf.com 
+	  The following line must be included in order for the resize and drag functions to 
+	  work properly on a touch device (glasses and smart phone). If it is not included, 
+	  the code will not function on a touch device as expected.-->
+      <script src="jquery.ui.touch-punch.js"></script>
+      
+      
+<style>
+      
+      /*sets the visual design for the divs and major elements of the page (body and footer)*/
+         #draggable-1 { 
+           width: 300px; height: 200px; padding: 2px;
+           background-color:#000; color:#000; border: 1px white solid;
+         }         
+         .ui-resizable-helper { border: 2px dotted #fff; }
+         body{
+         	background:#000;
+         	color:#fff;
+         }
+         footer{
+         	color: #000;
+         }
+         
+         /* sets all of the visual design for the resizing functionalities */
+         .ui-resizable {
+			position: relative;
+		}
+		.ui-resizable-handle {
+			position: absolute;
+			font-size: 0.1px;
+			display: block;
+		}
+		.ui-resizable-disabled .ui-resizable-handle,
+		.ui-resizable-autohide .ui-resizable-handle {
+			display: none;
+		}
+		.ui-resizable-n {
+			cursor: n-resize;
+			height: 7px;
+			width: 100%;
+			top: -5px;
+			left: 0;
+		}
+		.ui-resizable-s {
+			cursor: s-resize;
+			height: 7px;
+			width: 100%;
+			bottom: -5px;
+			left: 0;
+		}
+		.ui-resizable-e {
+			cursor: e-resize;
+			width: 7px;
+			right: -5px;
+			top: 0;
+			height: 100%;
+		}
+		.ui-resizable-w {
+			cursor: w-resize;
+			width: 7px;
+			left: -5px;
+			top: 0;
+			height: 100%;
+		}
+		.ui-resizable-se {
+			cursor: se-resize;
+			width: 12px;
+			height: 12px;
+			right: 1px;
+			bottom: 1px;
+		}
+		.ui-resizable-sw {
+			cursor: sw-resize;
+			width: 9px;
+			height: 9px;
+			left: -5px;
+			bottom: -5px;
+		}
+		.ui-resizable-nw {
+			cursor: nw-resize;
+			width: 9px;
+			height: 9px;
+			left: -5px;
+			top: -5px;
+		}
+		.ui-resizable-ne {
+			cursor: ne-resize;
+			width: 9px;
+			height: 9px;
+			right: -5px;
+			top: -5px;
+		}
+</style>
+      
+      
+<script>
+        
+        $(function() {
+		//Makes it so that the draggable-1 div is able to be dragged by the user. Also grabs the x and y location to inform the 
+		//researcher where the user has dragged the video to
+             $( "#draggable-1" ).draggable(
+             {drag: function (event, ui) {
+             	var offset = $(this).offset();
+                var x = ui.offset.left;
+                var y = ui.offset.top;
+				$("#loc").html('Top Left Corner of Video Location = ( ' + Math.round(x) + ',' + Math.round(y) + ')');}
+            });   
+            //Makes it so that the draggable-1 div is resizable by the user. Also grabs the width and height information
+            //to let the researcher know how big the video is after the user resizes it
+             $("#draggable-1").resizable({aspectRatio:true, helper: "ui-resizable-helper",
+            resize: function (event, ui) {
+                var width = ui.size.width;
+                var height = ui.size.height;
+                $("#size").html('Video Size = w' + Math.round(width) + 'px x h' + Math.round(height) + 'px');
+            }
+        });
+        });
+        
+        
+       /*  Resource: http://www.tutorialspoint.com/jqueryui/jqueryui_droppable.htm */
+       /*  Resource: http://stackoverflow.com/questions/20724676/how-to-get-the-div-size-with-jquery-in-real-time */
+	  
+	  
+	  //Displays the changes in size and position real time as the user manipulates the video 
+	  //This is shown at the top of the screen and disappears when the user clicks the button 
+	  function mylocation(){
+			resizeDiv = document.getElementById("draggable-1");
+			locDiv = document.getElementById("loc");
+			sizeDiv = document.getElementById("size");
+			sizeDiv.innerHTML = 'Video Size = w' + resizeDiv.clientWidth + "px x h" + resizeDiv.clientHeight + "px";
+			locDiv.innerHTML='Top Left Corner of Video Location = ( ' + resizeDiv.clientLeft + ',' + resizeDiv.clientTop + ')';
+		}
+	
+	
+	  
+	 //Button functionality - this is what happens when the button is clicked  
+	function changeContent(){
+ 		//creates variables to refer to the various components on screen and control them
+ 		//as needed 
+  		myVid = document.getElementById("draggable-1");
+		button = document.getElementById('saveButton');
+		locDiv = document.getElementById('loc');
+		sizeDiv = document.getElementById('size');
+		video = document.getElementById('video1');
+		//Logic - the placeholder video at the time the button is clicked 
+		//is switched to be the full length, interpreting video and the page 
+		//is made so that the only thing on screen is the new video being played. 
+		
+		//switches the video source to be the new video
+		video.src = "https://www.youtube.com/embed/s3UhTbx7vpU?autoplay=1";
+		//Makes it so that you can't hit the button again after you select to save your position
+    	button.disabled = 'true';
+    	//Makes it so that you can't see the button once disabled (this minimizes distractions on screen)
+		button.style.display = 'none';
+    	//Makes it so that video can't be moved after it is positioned in the desired spot
+    	$("#draggable-1").resizable("disable");
+    	$("#draggable-1").draggable("disable");	
+    	//Changes all text on page to be black in order to minimize distractions on screen
+    	instructions.style.color= '#000';
+    	sizeDiv.style.color = '#000';
+    	locDiv.style.color = '#000';
+    	//removes the outline around the video by making it the same color as the background (black)
+    	myVid.style.border = '1px white solid';	
+    	//Alerts the user of where their video currently is - this information will be documented by the researcher 
+    	window.alert(locDiv.innerHTML + '\n' + sizeDiv.innerHTML);	
+	}
+	
+	  
+</script>
+      
+      
+      
+      
+</head>
+
+
+<!-- displays where the video is and how big it is as soon as the page is loaded -->
+<body onload="mylocation()">
+
+
+ 	<div id="instructions">
+ 		<h2>Directions:</h2>
+ 		<p>Please click and drag the video to a spot that you feel most comfortable <br>viewing. Additionally, change the size by dragging the corners of the video<br> to the desired size you'd like to view the video at. When you think you <br> have the video in the best position for you, click "save position" to lock <br> in that position for the rest of the experiment.</p>
+	</div>
+ 	<!-- Button for Showing Video Location and Saving it -->
+	<button id="saveButton" onclick="changeContent()">Save Position!</button>
+	<!-- Two divs which are used to display the size and location of the video if any changes are made by the user-->
+	<div  id="loc" style="display:block;">
+	</div>
+	
+	<div  id="size" style="display:block;">
+	</div>
+
+	<div id="draggable-1" class="ui-widget-content" >
+		<iframe id="video1" width="95%" height="95%" src="https://www.youtube.com/embed/Y1SOY9YFgus?autoplay=1&loop=1&playlist=Y1SOY9YFgus" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<!-- Reference: http://www.w3schools.com/html/tryit.asp?filename=tryhtml_youtubeiframe_controls -->
+
+	<br>
+	<br>
+	
+	<footer>Copyright 2016 Ashley Miller
+	All rights reserved </footer>
+
+</body>
+
+
+<!-- This code was created by Ashley Miller, HCI masters student, under research in the
+RIT CAIR lab in September 2016. -->
+</html>
