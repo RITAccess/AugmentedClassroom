@@ -23,6 +23,6 @@ CleanDocumentedGlassesCode.HTML
 UpdatedCleanPHP.php
 
 *  Additional php added to the cleandocumentedglassescode.html file allows for three videos to play
-*     simultaneously on three different monitors
+     simultaneously on three different monitors
 *  This code is what is most preferred for playing in the glasses during an experiment
 *  Should be run using a bluetooth connected mouse with the glasses for easiest interactions
